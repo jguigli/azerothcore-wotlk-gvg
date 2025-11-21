@@ -10162,8 +10162,18 @@ ReputationRank Unit::GetReactionTo(Unit const* target, bool checkOriginalFaction
             }
 
             // check FFA_PVP
+            // MODIFIED: Protect same guild members from FFA PvP
             if (IsFFAPvP() && target->IsFFAPvP())
+            {
+                // Check if both are players in the same guild
+                if (selfPlayerOwner && targetPlayerOwner && 
+                    selfPlayerOwner->GetGuildId() > 0 &&
+                    selfPlayerOwner->GetGuildId() == targetPlayerOwner->GetGuildId())
+                {
+                    return REP_FRIENDLY; // Same guild = friendly, not hostile
+                }
                 return REP_HOSTILE;
+            }
 
             if (selfPlayerOwner)
             {
@@ -20825,6 +20835,19 @@ void Unit::PatchValuesUpdate(ByteBuffer& valuesUpdateBuf, BuildValuesCachePosPoi
                 // Allow targetting opposite faction in party when enabled in config
                 valuesUpdateBuf.put(posPointers.UnitFieldBytes2Pos, (m_uint32Values[UNIT_FIELD_BYTES_2] & ((UNIT_BYTE2_FLAG_SANCTUARY /*| UNIT_BYTE2_FLAG_AURAS | UNIT_BYTE2_FLAG_UNK5*/) << 8))); // this flag is at uint8 offset 1 !!
         }// pussywizard / Callmephil
+        // MODIFIED: Hide FFA PvP flag for same guild members (show as friendly)
+        else if (IsPlayer() && target->IsPlayer() && target != this)
+        {
+            Player const* thisPlayer = ToPlayer();
+            Player const* targetPlayer = target->ToPlayer();
+            if (thisPlayer && targetPlayer && 
+                thisPlayer->GetGuildId() > 0 && 
+                thisPlayer->GetGuildId() == targetPlayer->GetGuildId())
+            {
+                // Same guild: Clear FFA_PVP flag to show as friendly
+                valuesUpdateBuf.put(posPointers.UnitFieldBytes2Pos, (m_uint32Values[UNIT_FIELD_BYTES_2] & ~(UNIT_BYTE2_FLAG_FFA_PVP << 8)));
+            }
+        }
         else if (target->IsSpectator() && target->FindMap() && target->FindMap()->IsBattleArena() &&
                     (this->IsPlayer() || this->IsCreature() || this->IsDynamicObject()))
         {
@@ -20843,6 +20866,19 @@ void Unit::PatchValuesUpdate(ByteBuffer& valuesUpdateBuf, BuildValuesCachePosPoi
                 // pretend that all other HOSTILE players have own faction, to allow follow, heal, rezz (trade wont work)
                 valuesUpdateBuf.put(posPointers.UnitFieldFactionTemplatePos, uint32(target->GetFaction()));
         }// pussywizard / Callmephil
+        // MODIFIED: Show same guild members with same faction (appear as friendly)
+        else if (IsPlayer() && target->IsPlayer() && target != this)
+        {
+            Player const* thisPlayer = ToPlayer();
+            Player const* targetPlayer = target->ToPlayer();
+            if (thisPlayer && targetPlayer && 
+                thisPlayer->GetGuildId() > 0 && 
+                thisPlayer->GetGuildId() == targetPlayer->GetGuildId())
+            {
+                // Same guild: Show as same faction to appear friendly
+                valuesUpdateBuf.put(posPointers.UnitFieldFactionTemplatePos, uint32(target->GetFaction()));
+            }
+        }
         else if (target->IsSpectator() && target->FindMap() && target->FindMap()->IsBattleArena() &&
                     (this->IsPlayer() || this->IsCreature() || this->IsDynamicObject()))
         {
