@@ -99,13 +99,29 @@ void WorldSession::HandleCreatureQueryOpcode(WorldPacket& recvData)
         Name = ci->Name;
         Title = ci->SubName;
 
+        // Check if creature has a custom subname (e.g., guild name)
+        bool hasCustomSubName = false;
+        if (Player* player = GetPlayer())
+        {
+            Creature* creature = player->GetMap()->GetCreature(guid);
+            if (creature && creature->HasCustomSubName())
+            {
+                Title = creature->GetCustomSubName();
+                hasCustomSubName = true;
+            }
+        }
+
         LocaleConstant loc_idx = GetSessionDbLocaleIndex();
         if (loc_idx >= 0)
         {
             if (CreatureLocale const* cl = sObjectMgr->GetCreatureLocale(entry))
             {
                 ObjectMgr::GetLocaleString(cl->Name, loc_idx, Name);
-                ObjectMgr::GetLocaleString(cl->Title, loc_idx, Title);
+                // Only apply locale to Title if we don't have a custom subname
+                if (!hasCustomSubName)
+                {
+                    ObjectMgr::GetLocaleString(cl->Title, loc_idx, Title);
+                }
             }
         }
         // guess size

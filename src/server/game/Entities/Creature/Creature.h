@@ -218,6 +218,11 @@ public:
     // override WorldObject function for proper name localization
     [[nodiscard]] std::string const& GetNameForLocaleIdx(LocaleConstant locale_idx) const override;
 
+    // Custom subname support (e.g., for guild names)
+    void SetCustomSubName(std::string const& subName) { m_customSubName = subName; }
+    [[nodiscard]] std::string const& GetCustomSubName() const { return m_customSubName; }
+    [[nodiscard]] bool HasCustomSubName() const { return !m_customSubName.empty(); }
+
     void setDeathState(DeathState s, bool despawn = false) override;    // override virtual Unit::setDeathState
 
     bool LoadFromDB(ObjectGuid::LowType guid, Map* map, bool allowDuplicate = false) { return LoadCreatureFromDB(guid, map, false, allowDuplicate); }
@@ -516,6 +521,7 @@ protected:
 
     float m_detectionDistance;
     uint16 m_LootMode;  // bitmask, default LOOT_MODE_DEFAULT, determines what loot will be lootable
+    std::string m_customSubName;  // Custom subname override for individual creatures (e.g., guild name)
 
     float _sparringPct;
 
