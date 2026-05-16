@@ -1,0 +1,18 @@
+#
+# Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
+#
+
+[worldserver]
+
+########################################
+# Conquest Guard module configuration
+########################################
+#
+#    ConquestGuard.Enable
+#        Description: Enable the Conquest Guard module
+#        Default:     0 - Disabled
+#                     1 - Enabled
+#
+
+ConquestGuard.Enable = 1
+

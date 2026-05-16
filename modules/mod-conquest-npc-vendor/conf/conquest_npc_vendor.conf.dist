@@ -1,0 +1,17 @@
+#
+# Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
+#
+
+[worldserver]
+
+########################################
+# Conquest NPC Vendor Module Configuration
+########################################
+#
+#    ConquestNpcVendor.Enable
+#        Description: Enable the Conquest Vehicle Vendor NPC module
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+
+ConquestNpcVendor.Enable = 1

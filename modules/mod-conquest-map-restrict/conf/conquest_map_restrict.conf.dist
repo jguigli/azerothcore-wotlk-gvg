@@ -1,0 +1,29 @@
+[worldserver]
+
+########################################
+# Conquest Map Restrict Module
+########################################
+
+# Enable the module
+ConquestMapRestrict.Enable = 1
+
+# Bloque les instances (donjons + raids)
+ConquestMapRestrict.BlockInstances = 1
+
+# Bloque les BG et arènes
+ConquestMapRestrict.BlockBattlegrounds = 1
+
+# Whitelist zones sur map 530 (Outland) — par défaut zones BloodElf/Draenei autorisées :
+#   3430 = Eversong Woods (BloodElf start)
+#   3433 = Ghostlands (BloodElf level 10-20)
+#   3487 = Silvermoon City (BloodElf capitale)
+#   4080 = Isle of Quel'Danas (Sunwell)
+#   3524 = Azuremyst Isle (Draenei start)
+#   3525 = Bloodmyst Isle (Draenei level 10-20)
+#   3557 = The Exodar (Draenei capitale)
+#
+# Si tu veux ajouter d'autres zones, sépare par des virgules.
+ConquestMapRestrict.WhitelistZones530 = "3430,3433,3487,4080,3524,3525,3557"
+
+# Whitelist zones sur map 571 (Northrend) — vide par défaut, tout Northrend bloqué
+ConquestMapRestrict.WhitelistZones571 = ""

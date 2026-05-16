@@ -1,0 +1,45 @@
+# Conquest Map — server + client containers.
+#
+# By default, the server reaches the AzerothCore DB via host.docker.internal
+# (DB is exposed on host port 3306 by the main docker-compose.yml). This works
+# out of the box on Mac/Windows. On Linux, set DB_HOST=172.17.0.1 in .env or
+# uncomment the `extra_hosts` block below.
+
+services:
+    conquest-map-server:
+        container_name: conquest-map-server
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        environment:
+            DB_HOST: ${DB_HOST:-host.docker.internal}
+            DB_PORT: ${DB_PORT:-3306}
+            DB_USER: ${DB_USER:-root}
+            DB_PASSWORD: ${DB_PASSWORD:-password}
+            DB_WORLD: ${DB_WORLD:-acore_world}
+            DB_CHARACTERS: ${DB_CHARACTERS:-acore_characters}
+            PORT: 4317
+            BANNER_ENTRY: ${BANNER_ENTRY:-400010}
+            WAYPOINT_ENTRY: ${WAYPOINT_ENTRY:-400100}
+        ports:
+            - "${SERVER_PORT:-4317}:4317"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        restart: unless-stopped
+
+    conquest-map-client:
+        container_name: conquest-map-client
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        ports:
+            - "${CLIENT_PORT:-5317}:80"
+        # Hot-swap des images de carte sans rebuild : tout fichier ajouté
+        # ou modifié dans ./client/public/maps/ est servi immédiatement.
+        # Les noms attendus sont ek.webp, kalimdor.webp, outland.webp,
+        # northrend.webp (modifiables dans client/src/projection.ts).
+        volumes:
+            - ./client/public/maps:/usr/share/nginx/html/maps:ro
+        depends_on:
+            - conquest-map-server
+        restart: unless-stopped

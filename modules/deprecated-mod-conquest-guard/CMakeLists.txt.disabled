@@ -1,0 +1,6 @@
+AC_ADD_SCRIPT_LOADER("mod_conquest_guard" "${CMAKE_CURRENT_LIST_DIR}/src/loader.cpp")
+
+AC_ADD_SCRIPT("ConquestGuard" "${CMAKE_CURRENT_LIST_DIR}/src/ConquestGuard.cpp")
+
+AC_ADD_CONFIG_FILE("${CMAKE_CURRENT_LIST_DIR}/conf/conquest_guard.conf.dist")
+

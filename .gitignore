@@ -57,6 +57,15 @@ CMakeLists.txt.user
 # AI tools
 #
 .claude
+.venv/
+
+#
+# Conquest custom — local artifacts
+#
+/backups/
+/disable-conquest-modules.sh.local
+/tools/conquest-map/**/node_modules/
+**/.DS_Store
 
 #
 # IDE & other software

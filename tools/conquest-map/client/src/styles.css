@@ -1,0 +1,439 @@
+:root {
+    color-scheme: dark;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #0f1115;
+    color: #e6e9ef;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: #161922;
+    border-bottom: 1px solid #232735;
+    flex-wrap: wrap;
+}
+
+.toolbar h1 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.tabs {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.tab {
+    background: transparent;
+    color: #aab1c2;
+    border: 1px solid #2a2f40;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.tab.active {
+    background: #2a2f40;
+    color: #fff;
+    border-color: #3a4159;
+}
+
+.legend {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: #aab1c2;
+    margin-left: auto;
+    align-items: center;
+}
+
+.legend .dot {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    margin-right: 0.25rem;
+    vertical-align: middle;
+}
+
+.status {
+    font-size: 0.75rem;
+    color: #6b7287;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    color: #aab1c2;
+}
+
+.cal-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: #121521;
+    border-bottom: 1px solid #232735;
+    font-size: 0.8rem;
+}
+
+.cal-title {
+    font-weight: 600;
+    color: #e6e9ef;
+    margin-right: 0.5rem;
+}
+
+.cal-hint {
+    margin-left: auto;
+    color: #6b7287;
+    font-size: 0.72rem;
+}
+
+.cal-slider {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #aab1c2;
+}
+
+.cal-label {
+    min-width: 56px;
+    color: #aab1c2;
+}
+
+.cal-slider input[type="range"] {
+    width: 180px;
+}
+
+.cal-number {
+    width: 78px;
+    padding: 0.15rem 0.35rem;
+    background: #0f1115;
+    color: #e6e9ef;
+    border: 1px solid #2a2f40;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.78rem;
+}
+
+.canvas-wrap {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+    padding: 0.5rem;
+    background:
+        radial-gradient(circle at 50% 50%, #1c2030 0%, #0f1115 100%);
+}
+
+/* Single SVG fills the wrap; preserveAspectRatio="xMidYMid meet" letterboxes
+   uniformly so image, waypoints and banner markers all share the same
+   coordinate system — no possible misalignment. */
+.stage-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-marker {
+    cursor: pointer;
+    transition: r 120ms ease;
+}
+
+.banner-marker:hover {
+    stroke: #fff;
+    stroke-width: 2;
+}
+
+.tooltip {
+    position: fixed;
+    background: #161922;
+    border: 1px solid #2a2f40;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    pointer-events: none;
+    z-index: 10;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.tooltip dt {
+    color: #6b7287;
+    display: inline;
+}
+
+.tooltip dt::after {
+    content: ": ";
+}
+
+.tooltip dd {
+    display: inline;
+    margin: 0;
+    color: #e6e9ef;
+}
+
+.tooltip dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.15rem 0.5rem;
+}
+
+.tooltip dl > * {
+    display: block;
+}
+
+.empty {
+    color: #6b7287;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* ----- Dashboard ----- */
+
+.dashboard {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem 1.25rem;
+}
+
+.dashboard > * + * {
+    margin-top: 1rem;
+}
+
+.dashboard.loading,
+.dashboard.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7287;
+}
+
+.dashboard-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    flex-wrap: wrap;
+    color: #aab1c2;
+    font-size: 0.85rem;
+}
+
+.ds-label {
+    color: #6b7287;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.warn {
+    color: #f5b94a;
+    font-size: 0.78rem;
+}
+
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.65rem;
+}
+
+.kpi {
+    background: #161922;
+    border: 1px solid #232735;
+    border-radius: 8px;
+    padding: 0.75rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.kpi-label {
+    color: #6b7287;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.kpi-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e6e9ef;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kpi-sub {
+    color: #6b7287;
+    font-size: 0.72rem;
+}
+
+.card {
+    background: #161922;
+    border: 1px solid #232735;
+    border-radius: 8px;
+    /* No overflow:hidden — the page-level scroll handles long tables. */
+}
+
+/* Make wide tables horizontally scrollable inside the card without forcing
+   the whole dashboard to scroll sideways. */
+.card .dash-table-wrap {
+    overflow-x: auto;
+}
+
+.card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #232735;
+}
+
+.card-head h2 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e6e9ef;
+}
+
+.card-hint {
+    color: #6b7287;
+    font-size: 0.72rem;
+}
+
+.card-foot {
+    padding: 0.5rem 1rem;
+    border-top: 1px solid #232735;
+    font-size: 0.72rem;
+    line-height: 1.4;
+}
+
+.card-foot code {
+    background: #0f1115;
+    padding: 0 0.25rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+}
+
+.dash-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+.dash-table.compact {
+    width: auto;
+    min-width: 280px;
+}
+
+.dash-table thead th {
+    text-align: left;
+    color: #6b7287;
+    font-weight: 500;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #232735;
+    background: #131623;
+    white-space: nowrap;
+}
+
+.dash-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.dash-table th.sortable:hover {
+    color: #e6e9ef;
+}
+
+.sort-arrow {
+    margin-left: 0.25rem;
+    color: #aab1c2;
+}
+
+.dash-table tbody td {
+    padding: 0.45rem 0.75rem;
+    border-bottom: 1px solid #1c2030;
+    color: #c6cbd9;
+    vertical-align: middle;
+}
+
+.dash-table tbody tr:hover {
+    background: #1a1e2a;
+}
+
+.dash-table .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.dash-table .strong {
+    color: #e6e9ef;
+    font-weight: 500;
+}
+
+.dash-table .muted {
+    color: #6b7287;
+}
+
+.dash-table .faction-a {
+    color: #6fb8ff;
+}
+
+.dash-table .faction-h {
+    color: #ff7a86;
+}
+
+.dash-table .guilds {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.total-row td {
+    font-weight: 600;
+    color: #e6e9ef;
+    background: #131623;
+}
+
+.empty-row {
+    text-align: center;
+    color: #6b7287;
+    padding: 1.5rem !important;
+}
+
+.view-switch .tab {
+    font-size: 0.85rem;
+}
+

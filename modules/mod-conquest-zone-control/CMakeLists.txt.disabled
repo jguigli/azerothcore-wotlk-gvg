@@ -1,0 +1,7 @@
+AC_ADD_SCRIPT_LOADER("mod_conquest_zone_control" "${CMAKE_CURRENT_LIST_DIR}/src/loader.cpp")
+
+AC_ADD_SCRIPT("ConquestZoneControl" "${CMAKE_CURRENT_LIST_DIR}/src/ConquestZoneControl.cpp")
+AC_ADD_SCRIPT("ConquestSharedChestGuildBankScript" "${CMAKE_CURRENT_LIST_DIR}/src/ConquestSharedChestGuildBankScript.cpp")
+
+AC_ADD_CONFIG_FILE("${CMAKE_CURRENT_LIST_DIR}/conf/conquest_zone_control.conf.dist")
+

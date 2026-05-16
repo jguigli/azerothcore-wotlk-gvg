@@ -1,0 +1,37 @@
+#
+# Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
+#
+
+[worldserver]
+
+########################################
+# Conquest Zone Control Module Configuration
+########################################
+#
+#    ConquestZoneControl.Enable
+#        Description: Enable the Conquest Zone Control module
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+
+ConquestZoneControl.Enable = 1
+
+#    ConquestZoneControl.CaptureTimeMs
+#        Description: Duration (in milliseconds) required to capture a banner after channeling finishes.
+#        Default:     60000 (1 minute)
+ConquestZoneControl.CaptureTimeMs = 60000
+
+#    ConquestZoneControl.RewardGoldAmount
+#        Description: Amount of item entry 80020 (Or Conquest) granted per reward tick.
+#        Default:     10
+ConquestZoneControl.RewardGoldAmount = 10
+
+#    ConquestZoneControl.RewardWoodAmount
+#        Description: Amount of item entry 80021 (Bois Conquest) granted per reward tick.
+#        Default:     10
+ConquestZoneControl.RewardWoodAmount = 10
+
+#    ConquestZoneControl.RewardIntervalSeconds
+#        Description: Interval in seconds between reward distributions for controlling guilds.
+#        Default:     600 (10 minutes)
+ConquestZoneControl.RewardIntervalSeconds = 600

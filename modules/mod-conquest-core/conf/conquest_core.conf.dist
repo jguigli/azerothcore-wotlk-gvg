@@ -1,0 +1,31 @@
+#
+# Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
+#
+
+[worldserver]
+
+########################################
+# Conquest Core Module Configuration
+########################################
+#
+#    ConquestCore.Enable
+#        Description: Enable Conquest Core module for guild relations and statistics tracking
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+
+ConquestCore.Enable = 1
+
+#    ConquestCore.PlayerStart.Enable
+#        Description: Enable automatic leveling/skill learning for new characters
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+#    ConquestCore.PlayerStart.Level
+#        Description: Level applied to newly created characters (max 80)
+#        Default:     80
+#
+
+ConquestCore.PlayerStart.Enable = 1
+ConquestCore.PlayerStart.Level = 80
+

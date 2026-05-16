@@ -1,0 +1,14 @@
+[worldserver]
+
+########################################
+# Conquest Group Cap Module
+########################################
+
+# Enable the module
+ConquestGroupCap.Enable = 1
+
+# Max group size (party only, no raid)
+ConquestGroupCap.MaxGroupSize = 5
+
+# Bloquer la conversion en raid (raid groups désactivés)
+ConquestGroupCap.AllowRaids = 0

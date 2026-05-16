@@ -1,0 +1,12 @@
+AC_ADD_SCRIPT_LOADER("mod_conquest_core" "${CMAKE_CURRENT_LIST_DIR}/src/loader.cpp")
+
+AC_ADD_SCRIPT("ConquestCore" "${CMAKE_CURRENT_LIST_DIR}/src/ConquestCore.cpp")
+AC_ADD_SCRIPT("ConquestCommands" "${CMAKE_CURRENT_LIST_DIR}/src/ConquestCommands.cpp")
+AC_ADD_SCRIPT("ConquestHostility" "${CMAKE_CURRENT_LIST_DIR}/src/ConquestHostility.cpp")
+AC_ADD_SCRIPT("ModuleConquest" "${CMAKE_CURRENT_LIST_DIR}/src/ModuleConquest.cpp")
+AC_ADD_SCRIPT("ConquestRestrictions" "${CMAKE_CURRENT_LIST_DIR}/src/ConquestRestrictions.cpp")
+AC_ADD_SCRIPT("ConquestPlayerStart" "${CMAKE_CURRENT_LIST_DIR}/src/ConquestPlayerStart.cpp")
+AC_ADD_SCRIPT("ConquestPlayerDeath" "${CMAKE_CURRENT_LIST_DIR}/src/ConquestPlayerDeath.cpp")
+
+AC_ADD_CONFIG_FILE("${CMAKE_CURRENT_LIST_DIR}/conf/conquest_core.conf.dist")
+

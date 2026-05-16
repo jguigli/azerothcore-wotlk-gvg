@@ -1,0 +1,58 @@
+#
+# Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
+#
+
+[worldserver]
+
+########################################
+# Conquest Build Module Configuration
+########################################
+#
+#    ConquestBuild.Enable
+#        Description: Enable the Conquest Build system
+#        Default:     1 - Enabled
+#                     0 - Disabled
+#
+
+ConquestBuild.Enable = 1
+
+#
+#    ConquestBuild.ItemId
+#        Description: Item ID used to spawn structures
+#        Default:     80000 (Kit de Construction Conquest)
+#
+
+ConquestBuild.ItemId = 80000
+
+#
+#    ConquestBuild.WallGobId
+#        Description: GameObject ID for walls
+#        Default:     190397
+#
+
+ConquestBuild.WallGobId = 190397
+
+#
+#    ConquestBuild.TowerGobId
+#        Description: GameObject ID for towers
+#        Default:     190398
+#
+
+ConquestBuild.TowerGobId = 190398
+
+#
+#    ConquestBuild.MinDistance
+#        Description: Minimum distance between structures (in yards)
+#        Default:     10.0
+#
+
+ConquestBuild.MinDistance = 10.0
+
+#
+#    ConquestBuild.MaxStructuresPerPlayer
+#        Description: Maximum number of structures per player
+#        Default:     50
+#
+
+ConquestBuild.MaxStructuresPerPlayer = 50
+

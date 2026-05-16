@@ -1,0 +1,33 @@
+#
+# Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
+#
+
+[worldserver]
+
+########################################
+# Conquest Limit Group Module Configuration
+########################################
+#
+#    ConquestLimitGroup.Enable
+#        Description: Enable the Conquest Limit Group module
+#        Default:     0 - Disabled
+#                     1 - Enabled
+#
+#    ConquestLimitGroup.MaxGuildMembers
+#        Description: Maximum number of members allowed in a guild
+#        Default:     30
+#
+#    ConquestLimitGroup.MaxGroupSize
+#        Description: Maximum number of players allowed in a group
+#        Default:     5
+#
+#    ConquestLimitGroup.AllowRaids
+#        Description: Allow players to create raid groups (groups larger than 5)
+#        Default:     0 - Disabled (raids not allowed)
+#                     1 - Enabled (raids allowed)
+#
+
+ConquestLimitGroup.Enable = 1
+ConquestLimitGroup.MaxGuildMembers = 30
+ConquestLimitGroup.MaxGroupSize = 5
+ConquestLimitGroup.AllowRaids = 0

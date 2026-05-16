@@ -1,0 +1,19 @@
+#
+# Copyright (C) 2016+ AzerothCore <www.azerothcore.org>, released under GNU AGPL v3 license: https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3
+#
+
+[worldserver]
+
+########################################
+# Conquest Loot Drop Module Configuration
+########################################
+#
+#    ConquestLootDrop.Enable
+#        Description: Enable the player corpse loot system.
+#                     When a player dies, a loot bag will spawn containing all their items.
+#                     The bag remains for 15 minutes and can be looted by anyone.
+#        Default:     0 - Disabled
+#                     1 - Enabled
+#
+
+ConquestLootDrop.Enable = 1

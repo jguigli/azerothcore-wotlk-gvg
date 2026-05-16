@@ -182,6 +182,10 @@ COPY --chown=$DOCKER_USER:$DOCKER_USER \
      --from=build \
      /azerothcore/env/dist/bin/worldserver /azerothcore/env/dist/bin/worldserver
 
+# mod-playerbots needs access to its SQL files at runtime to populate its DB on startup
+COPY --chown=$DOCKER_USER:$DOCKER_USER \
+    modules modules
+
 VOLUME /azerothcore/env/dist/etc
 
 CMD ["worldserver"]

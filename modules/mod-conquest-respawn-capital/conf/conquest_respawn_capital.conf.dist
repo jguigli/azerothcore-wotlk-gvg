@@ -1,0 +1,14 @@
+[worldserver]
+
+########################################
+# Conquest Respawn Capital Module
+########################################
+
+# Enable the module — players respawn in their race capital after death
+ConquestRespawnCapital.Enable = 1
+
+# Also force spawn at capital on character creation (new chars created)
+ConquestRespawnCapital.OnCreate = 1
+
+# Also update homebind to the capital (hearthstone returns there)
+ConquestRespawnCapital.UpdateHomebind = 1

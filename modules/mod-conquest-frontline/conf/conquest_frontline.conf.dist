@@ -1,0 +1,38 @@
+[worldserver]
+
+########################################
+# Conquest Frontline Module
+########################################
+
+# Enable the module
+ConquestFrontline.Enable = 1
+
+# GameObject entry used for capture banners (must be type 29 CAPTURE_POINT)
+ConquestFrontline.BannerEntry = 400010
+
+# Points de Conquête distribués à chaque joueur de la faction capturante
+# (filtré par rayon de capture du banner — Data0 = 45y par défaut)
+ConquestFrontline.ConquestPointsPerCapture = 5
+
+# Points de Bataille gagnés par kill cross-faction
+ConquestFrontline.BattlePointsPerKill = 1
+
+# Intervalle de broadcast de la progression de capture (ms)
+ConquestFrontline.ProgressBroadcastMs = 5000
+
+# Force tous les joueurs à être PvP-flagged sur Azeroth (maps 0 et 1)
+ConquestFrontline.ForcePvP = 1
+
+############################
+# Phase 5 — Kill Streak & Marques de Champion
+############################
+
+ConquestFrontline.KillStreakOnFire   = 5
+ConquestFrontline.KillStreakPrestige = 10
+
+ConquestFrontline.KillStreakOnFireSpell   = 23333
+ConquestFrontline.KillStreakPrestigeSpell = 23335
+
+ConquestFrontline.MarksPerOnFireKill   = 1
+ConquestFrontline.MarksPerPrestigeKill = 3
+ConquestFrontline.MarksRandomChancePct = 1
